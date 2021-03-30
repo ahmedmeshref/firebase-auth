@@ -33,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextFormField(
               validator: (value) {
-                if (value.length < 6) {
-                  return 'Password should contain at least 6 chars';
+                if (value.length < 7) {
+                  return 'Password should contain at least 7 chars';
                 }
                 return null;
               },
@@ -54,18 +54,17 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> signIn() async {
     final formState = _formKey.currentState;
-    print("I was called");
     // Validate fields
     if (formState.validate()) {
       // Save form input
       formState.save();
       try {
         // Login to firebase
-        dynamic user = await FirebaseAuth.instance
+        UserCredential result = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: _email, password: _password);
         // Navigate to home
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage(user: result.user)));
       } catch (e) {
         print(e);
       }
