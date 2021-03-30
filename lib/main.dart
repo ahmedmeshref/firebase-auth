@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/home.dart';
 
 void main() {
   runApp(App());
@@ -18,16 +19,4 @@ class App extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  // MyHomePage({Key key, this.title}) : super(key: key);
-  // final String title;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-      ),
-    );
-  }
-}
