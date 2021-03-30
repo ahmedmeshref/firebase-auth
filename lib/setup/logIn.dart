@@ -31,9 +31,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               TextFormField(
+                key: Key('emailField'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Insert correct email.';
+                    return 'Insert email';
                   }
                   return null;
                 },
@@ -44,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextFormField(
+                key: Key('passwordField'),
                 validator: (value) {
                   if (value.length < 7) {
                     return 'Password should contain at least 7 chars';
@@ -60,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 40.0,
                 margin: EdgeInsets.only(top: 10, bottom: 10),
                 child: RaisedButton(
+                  key: Key('loginButton'),
                   onPressed: signIn,
                   child: Text('Sign in'),
                   color: Color.fromRGBO(0, 0, 0, .1),
