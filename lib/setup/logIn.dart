@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_test/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -43,12 +43,32 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: signIn,
               child: Text('Sign in'),
             )
           ],
         ),
       ),
     );
+  }
+
+  Future<void> signIn() async {
+    final formState = _formKey.currentState;
+    print("I was called");
+    // Validate fields
+    if (formState.validate()) {
+      // Save form input
+      formState.save();
+      try {
+        // Login to firebase
+        dynamic user = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: _email, password: _password);
+        // Navigate to home
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }
