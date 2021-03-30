@@ -18,7 +18,6 @@ class App extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatelessWidget {
   // MyHomePage({Key key, this.title}) : super(key: key);
   // final String title;
@@ -31,3 +30,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
